@@ -1,6 +1,9 @@
 import React from 'react';
 
-export default function createHigherOrderComponent(ComposedComponent, {stateMixin, propsMixin}) {
+export default function createHigherOrderComponent(
+  {stateMixin, propsMixin},
+  ComposedComponent
+) {
   const higherOrderComponent = class HigherOrderComponent extends React.Component {
     constructor(props) {
       super(props)
