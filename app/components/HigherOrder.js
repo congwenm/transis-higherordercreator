@@ -10,11 +10,9 @@ const TransisViewHigherOrder = createHigherOrderComponent(
   },
   class TransisView extends React.Component {
     render () {
-      console.debug('render transis view')
-      return <div>
-        This is a view for transis model.
-        <br/><br/>Name: {this.props.vehicle.name}
-        <br/><br/>Color: {this.props.vehicle.color}
+      return <div style={{paddingBottom:20}}>
+        <h3>Name: {this.props.vehicle.name}</h3>
+        <h3>Color: {this.props.vehicle.color}</h3>
       </div>
     }
   }
@@ -28,7 +26,7 @@ export default createHigherOrderComponent({
   }, class App extends React.Component {
     render() {
       return <div style={{display: 'inline-block', border: '1px solid green', margin: 10, padding: 10}}>
-        <h2> Higher Order</h2>
+        <h4> Higher Order</h4>
         <TransisViewHigherOrder vehicle={this.props.vehicle}/>
         <button onClick={()=> { this.props.vehicle.name = 'GMC'; this.props.vehicle.color = 'yellow'}} style={{padding: 20, fontSize: 20}}>change name</button>
         <button onClick={()=> { this.props.vehicle.color = 'green'}} style={{padding: 20, fontSize: 20}}>change color</button>
