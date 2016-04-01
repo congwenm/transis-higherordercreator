@@ -7,14 +7,29 @@ export default function createHigherOrderComponent(
   const higherOrderComponent = class HigherOrderComponent extends React.Component {
     constructor(props) {
       super(props)
+
+      this.componentWillMount = () => {
+        if (stateMixin) {
+          stateMixin.componentWillMount.apply(this,arguments);
+        }
+        if (propsMixin) {
+          propsMixin.componentWillMount.apply(this,arguments);
+        }
+      };
+
+      this.componentWillUnmount = () => {
+        if (stateMixin) {
+          stateMixin.componentWillUnmount.apply(this,arguments);
+        }
+        if (propsMixin) {
+          propsMixin.componentWillUnmount.apply(this,arguments);
+        }
+      };
+
       if (stateMixin) {
         this.state = stateMixin.getInitialState();
-        this.componentWillMount = stateMixin.componentWillMount.bind(this);
-        this.componentWillUnmount = stateMixin.componentWillUnmount.bind(this);
       }
-      else if (propsMixin) {
-        this.componentWillMount = propsMixin.componentWillMount.bind(this);
-        this.componentWillUnmount = propsMixin.componentWillUnmount.bind(this);
+      if (propsMixin) {
         this.componentWillReceiveProps = propsMixin.componentWillReceiveProps.bind(this);
       }
     }

@@ -5,14 +5,19 @@ const TransisView = React.createClass({
   mixins: [
     Transis.ReactPropsMixin({
       vehicle: ['color']
+    }),
+    Transis.ReactStateMixin(AppState, {
+      limo: ['price']
     })
   ],
 
   render () {
     console.debug('render transis view');
-    return <div style={{paddingBottom:20}}>
-      <h3>Name: {this.props.vehicle.name}</h3>
-      <h3>Color: {this.props.vehicle.color}</h3>
+    return <div style={{paddingBottom:20, border: "1px dotted gray"}}>
+      <h3>Vehicle</h3>
+      <h4>Name: {this.props.vehicle.name}</h4>
+      <h4 style={{color: this.props.vehicle.color}}>Color: {this.props.vehicle.color}</h4>
+      <h3>Limo Prices: {this.state.limo.price}</h3>
     </div>;
   }
 });
@@ -26,13 +31,9 @@ export default React.createClass({
 
   render () {
     console.debug('rendering app', this.state.vehicle)
-    return <div style={{display: 'inline-block', border: '1px solid purple', margin: 10, padding: 10}}>
+    return <div style={{display: 'inline-block', border: '1px solid purple', margin: 10, padding: 10, width: '30%'}}>
       <h4> Old Fashioned </h4>
       <TransisView vehicle={this.state.vehicle}/>
-      <button onClick={()=> { this.state.vehicle.name = 'GMC'; this.state.vehicle.color = 'yellow'}} style={{padding: 20, fontSize: 20}}>change name</button>
-      <button onClick={()=> { this.state.vehicle.color = 'green'}} style={{padding: 20, fontSize: 20}}>change color</button>
-      <button onClick={()=> { this.state.vehicle.color = 'yellow';
-      this.state.vehicle.name = 'Honda'}} style={{padding: 20, fontSize: 20}}>change Both</button>
     </div>;
   }
 })
