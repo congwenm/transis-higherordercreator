@@ -1,3 +1,18 @@
 body {
   background: #FFF5EE;
 }
+
+button {
+  margin: 10px 10px;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.u-inlineBlock {
+  display: inline-block;
+}
+
+img {
+  margin: 0 10px;
+  height: 30px;
+}

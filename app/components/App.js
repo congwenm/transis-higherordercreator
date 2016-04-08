@@ -17,31 +17,51 @@ export default class App extends React.Component {
   }
 
   render () {
+    let {spiderman, deadpool, punisher} = AppState;
     return (<div>
       <div>
+        <h1><center>Power ranking</center></h1>
         <OldFashion />
-        <AppES6 vehicle = {AppState.vehicle} limo={AppState.limo}/>
+        <AppES6 spidermanName={spiderman.name}
+          spidermanColor={spiderman.color}
+          spidermanPowerlevel={spiderman.powerlevel}
+        />
         <AppHigherOrder />
       </div>
       <div>
-        <button onClick={()=> {AppState.vehicle.name = 'GMC';AppState.vehicle.color = 'yellow'}}
-          style={{padding: 20, fontSize: 20}}
-        >change name</button>
-        <button style={{padding: 20, fontSize: 20}}
-          onClick={()=> {AppState.vehicle.color = 'green'}}
-        >change color</button>
-        <button style={{padding: 20, fontSize: 20}}
-          onClick={()=> {AppState.vehicle.color = 'yellow';AppState.vehicle.name = 'Honda'}}
-        >
-          change Name and Color
-        </button>
+        <div>
+          <h2 className="u-inlineBlock">Spiderman: state </h2>
+          <button onClick={()=> spiderman.undoChanges()}>reset</button>
+          <button onClick={()=> {spiderman.name = "Spiderman"; spiderman.color = "red"}}>Morphin Time</button>
+          <button onClick={()=> {spiderman.color = "black"; spiderman.powerlevel = 20}}>Turn Evil</button>
+        </div>
 
-        <br/>
-        <button style={{padding: 20, fontSize: 20}}
-          onClick={()=> {AppState.limo.price=rand(20000) }}
-        >
-          Limo: change price
-        </button>
+        <div>
+          <h2 className="u-inlineBlock">Deadpool: prop </h2>
+          <button onClick={()=> deadpool.undoChanges()}>reset</button>
+          <button onClick={()=> {
+            deadpool.name = "Deadpool";
+            deadpool.color = 'red';
+          }}>Morphin Time</button>
+          <button onClick={()=> {
+            deadpool.powerlevel = (Math.floor(Math.random() * 10E10)).toString()
+          }}>
+            Use the 4th Wall
+          </button>
+        </div>
+
+        <div>
+          <h2 className="u-inlineBlock">Punisher: state </h2>
+          <button onClick={()=> punisher.undoChanges()}>reset</button>
+          <button onClick={()=> {
+            punisher.name = "Punisher";
+            punisher.color = "black";
+          }}>Morphin Time</button>
+          <button onClick={()=> punisher.powerlevel = 30 }>
+            Loses family
+          </button>
+        </div>
+
       </div>
     </div>);
   }
