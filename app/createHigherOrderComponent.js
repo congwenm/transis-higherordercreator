@@ -5,6 +5,15 @@ export default function createHigherOrderComponent(
   ComposedComponent
 ) {
   const higherOrderComponent = class HigherOrderComponent extends React.Component {
+    isMounted() {
+      return this.__isMounted;
+    }
+    componentDidMount() {
+      this.__isMounted = true
+    }
+    componentWillUnmount() {
+      this.__isMounted = false
+    }
     constructor(props) {
       super(props)
 
